@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Assignments</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <nav class="bg-blue-700 text-white p-4 flex justify-between">
+    <h1 class="font-bold text-xl">Course Portal</h1>
+    <div class="space-x-3">
+      <a href="/courses" class="hover:underline">Courses</a>
+      <a href="/dashboard" class="hover:underline">Dashboard</a>
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto p-6">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Assignments</h2>
+
+    <% if (currentUser.role === "teacher" || currentUser.role === "admin") { %>
+      <div class="bg-white p-6 rounded-2xl shadow-lg mb-6">
+        <h3 class="text-xl font-bold mb-4">Create Assignment</h3>
+
+        <form method="POST" action="/courses/<%= courseId %>/assignments" class="space-y-4">
+          <input class="w-full border p-3 rounded-lg" name="title" placeholder="Assignment Title" required>
+
+          <textarea class="w-full border p-3 rounded-lg" name="instructions" placeholder="Instructions" required></textarea>
+
+          <button class="bg-green-600 text-white px-5 py-3 rounded-lg hover:bg-green-700">
+            Create Assignment
+          </button>
+        </form>
+      </div>
+    <% } %>
+
+    <div class="space-y-4">
+      <% assignments.forEach(a => { %>
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-bold text-blue-700"><%= a.title %></h3>
+          <p class="text-gray-600 mt-2 mb-4"><%= a.instructions %></p>
+
+          <% if (currentUser.role === "student") { %>
+            <form method="POST" action="/assignments/<%= a._id %>/submit" class="space-y-3">
+              <textarea class="w-full border p-3 rounded-lg" name="content" placeholder="Write your homework answer here" required></textarea>
+
+              <button class="bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700">
+                Submit Homework
+              </button>
+            </form>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+</body>
+</html>

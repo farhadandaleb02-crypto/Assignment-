@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <nav class="bg-blue-700 text-white p-4 flex justify-between">
+    <h1 class="font-bold text-xl">Course Portal</h1>
+    <a href="/logout" class="bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600">Logout</a>
+  </nav>
+
+  <div class="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg">
+    <h2 class="text-3xl font-bold text-gray-800 mb-2">Dashboard</h2>
+
+    <p class="text-gray-600 mb-1">
+      Welcome, <span class="font-semibold"><%= currentUser.name %></span>
+    </p>
+
+    <p class="text-gray-600 mb-6">
+      Your role:
+      <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
+        <%= currentUser.role %>
+      </span>
+    </p>
+
+    <div class="flex gap-4">
+      <a href="/courses" class="bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700">
+        View Courses
+      </a>
+
+      <% if (currentUser.role === "admin" || currentUser.role === "teacher") { %>
+        <a href="/courses/new" class="bg-green-600 text-white px-5 py-3 rounded-lg hover:bg-green-700">
+          Create Course
+        </a>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>

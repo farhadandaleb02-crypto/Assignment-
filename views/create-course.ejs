@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Course</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <nav class="bg-blue-700 text-white p-4 flex justify-between">
+    <h1 class="font-bold text-xl">Course Portal</h1>
+    <a href="/courses" class="hover:underline">Back</a>
+  </nav>
+
+  <div class="max-w-xl mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Create Course</h2>
+
+    <form method="POST" action="/courses" class="space-y-4">
+      <input class="w-full border p-3 rounded-lg" type="text" name="title" placeholder="Course Title" required>
+
+      <textarea class="w-full border p-3 rounded-lg" name="description" placeholder="Description" required></textarea>
+
+      <input class="w-full border p-3 rounded-lg" type="text" name="category" placeholder="Category" required>
+
+      <input class="w-full border p-3 rounded-lg" type="text" name="videoUrl" placeholder="Video URL" required>
+
+      <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700">
+        Create Course
+      </button>
+    </form>
+  </div>
+
+</body>
+</html>
